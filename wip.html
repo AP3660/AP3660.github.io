@@ -51,6 +51,7 @@
       transition: filter 0.3s linear;
       white-space: nowrap;
       background: black;
+      transform: scale(0.5); /* Reduce the size to 50% */
     }
 
     #input,
@@ -78,31 +79,6 @@
     a:hover {
       background-color: #90E0EF; /* Light Blue */
       color: #03045E; /* Dark Blue */
-    }
-
-    /* Media Queries */
-    @media (max-width: 1200px) {
-      #output {
-        transform: scale(0.8);
-      }
-    }
-
-    @media (max-width: 800px) {
-      #output {
-        transform: scale(0.6);
-      }
-    }
-
-    @media (max-width: 600px) {
-      #output {
-        transform: scale(0.5);
-      }
-    }
-
-    @media (max-width: 400px) {
-      #output {
-        transform: scale(0.4);
-      }
     }
   </style>
 </head>
@@ -137,9 +113,9 @@
       ctx.drawImage(video, 0, 0, w, h);
       const data = ctx.getImageData(0, 0, w, h).data;
       let outputText = "";
-      for (let y = 0; y < h; y++) {
+      for (let y = 0; h; y++) {
         let row = "";
-        for (let x = 0; x < w; x++) {
+        for (let x = 0; w; x++) {
           const index = (x + y * w) * 4;
           const [r, g, b] = data.slice(index, index + 3);
           const c = (r + g + b) / 3;
@@ -165,3 +141,4 @@
 </body>
 
 </html>
+
