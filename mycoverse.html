@@ -122,6 +122,33 @@
             content: "]";
         }
 
+        /* Media Query for Mobile Devices */
+        @media only screen and (max-width: 600px) {
+            body {
+                font-size: 1rem;
+            }
+
+            .terminal {
+                padding: 2rem;
+            }
+
+            .output {
+                text-shadow:
+                    0 0 0.5ex rgba(51, 255, 51, 1),
+                    0 0 1px rgba(255, 255, 255, 0.8);
+            }
+
+            .overlay::before {
+                background-image: linear-gradient(
+                    0deg,
+                    transparent 0%,
+                    rgba(32, 128, 32, 0.2) 1%,
+                    rgba(32, 128, 32, 0.8) 2%,
+                    rgba(32, 128, 32, 0.2) 2%,
+                    transparent 100%);
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -136,7 +163,7 @@
         <p class="output" style="animation-delay: 10s;">Explore, adapt, and uncover the secrets of this new world...</p>
         <p class="output" style="animation-delay: 12s;">Prepare yourself for the ultimate survival experience...</p>
         <p class="output" style="animation-delay: 14s;">Go back to <a href="https://aryanpadhye.com">your previous life</a>...</p>
-        <p class="output" style="animation-delay: 16s;">Or see how deep the rabbit hole goes: <a href="http://aryanpadhye.com/wip.html">continue to Mycoverse</a>...</p>
+        <p class="output" style="animation-delay: 16s;">Or see how deep the rabbit hole goes: <a href="http://your-mycoverse-homepage.com">continue to Mycoverse</a>...</p>
     </div>
 
     <!-- Background music -->
@@ -146,5 +173,3 @@
     </audio>
 </body>
 </html>
-
-
