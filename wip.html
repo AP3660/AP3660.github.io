@@ -36,12 +36,13 @@
         }
 
         #output {
+            width: 200px; /* Adjust width to fit the layout */
+            height: auto;
+            margin: 20px 0;
             text-align: center;
-            font-size: 4px;
-            line-height: 4px;
-            color: #FFFFFF;
-            white-space: pre;
-            margin-top: 20px;
+            border-radius: 2rem;
+            overflow: hidden;
+            filter: brightness(var(--brightness, 1));
         }
 
         a {
@@ -58,49 +59,73 @@
             background-color: #90E0EF; /* Light Blue */
             color: #03045E; /* Dark Blue */
         }
+
+        #input,
+        #prerender {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
     </style>
 </head>
 
 <body>
     <h1>Work in Progress</h1>
-
     <div id="output"></div>
-
     <p>Rome was not built in a day</p>
     <a href="javascript:history.back()">Go Back</a>
 
-    <canvas id="prerender" width="96" height="32" style="display:none;"></canvas>
-    <video id="input" autoplay muted loop playsinline style="display:none;">
-        <source src="/assets/rickroll.mp4" type="video/mp4">
+    <video id="input" autoplay muted loop playsinline crossorigin="anonymous">
+        <source src="assets/rickroll.mp4" type="video/mp4">
     </video>
+    <canvas id="prerender" width="96" height="32"></canvas>
 
     <script>
         const video = document.getElementById("input");
         const canvas = document.getElementById("prerender");
         const output = document.getElementById("output");
-        const ctx = canvas.getContext("2d");
-        const chars = "@#W$9876543210?!abc;:+=-,._ "; // Grayscale characters
+        const ctx = canvas.getContext("2d", { willReadFrequently: true });
+        const charsFixed = [
+            "_", ".", ",", "-", "=", "+", ":", ";", "c", "b", "a", "!", "?", "0", "1", "2", "3", "4", "5", "6", "7",
+            ["9", "8"], ["✚", "✚", "✚", "✚", "✚", "⚛︎"], ["☺︎", "☹︎"], "☀︎", ["@", "#"], ["X", "Y", "Z"], "'"
+        ];
+        let chars = [...charsFixed];
+        let charsLength = chars.length;
+        const MAX_COLOR_INDEX = 255;
 
-        video.addEventListener('play', function () {
-            function drawFrame() {
-                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-                let ascii = '';
-                for (let i = 0; i < imageData.data.length; i += 4) {
-                    const r = imageData.data[i];
-                    const g = imageData.data[i + 1];
-                    const b = imageData.data[i + 2];
-                    const avg = (r + g + b) / 3;
-                    const charIndex = Math.floor((avg / 255) * (chars.length - 1));
-                    ascii += chars[charIndex];
-                    if ((i / 4) % canvas.width === canvas.width - 1) ascii += '\n';
+        const updateCanvas = () => {
+            const w = canvas.width;
+            const h = canvas.height;
+            ctx.drawImage(video, 0, 0, w, h);
+            const data = ctx.getImageData(0, 0, w, h).data;
+            let outputText = "";
+            for (let y = 0; y < h; y++) {
+                let row = "";
+                for (let x = 0; x < w; x++) {
+                    const index = (x + y * w) * 4;
+                    const [r, g, b] = data.slice(index, index + 3);
+                    const c = (r + g + b) / 3;
+                    const charIndex = Math.floor((charsLength * ((c * 100) / MAX_COLOR_INDEX)) / 100);
+                    const result = chars[charIndex];
+                    const char = Array.isArray(result)
+                        ? result[Math.floor(Math.random() * result.length) + 0]
+                        : result;
+                    row += `<span style="color: rgb(${r}, ${g}, ${b});">${char ?? "&nbsp;"}</span>`;
                 }
-                output.textContent = ascii;
-                requestAnimationFrame(drawFrame);
+                outputText += `<div>${row}</div>`;
             }
-            drawFrame();
+            output.innerHTML = outputText;
+            output.style.setProperty("--color", `rgb(${data[0]}, ${data[1]}, ${data[2]})`);
+            setTimeout(() => requestAnimationFrame(updateCanvas), 0);
+        };
+
+        requestAnimationFrame(() => {
+            video.play();
+            updateCanvas();
         });
     </script>
 </body>
 
 </html>
+
