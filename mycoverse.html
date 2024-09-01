@@ -24,6 +24,10 @@
                 0 0 1ex rgba(51, 255, 51, 1),
                 0 0 2px rgba(255, 255, 255, 0.8);
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         .noise {
@@ -82,12 +86,12 @@
 
         .terminal {
             box-sizing: inherit;
-            position: absolute;
-            height: 100%;
-            width: 1000px;
+            position: relative;
+            height: auto;
             max-width: 100%;
             padding: 4rem;
             text-transform: uppercase;
+            text-align: center;
         }
 
         .output {
@@ -124,11 +128,14 @@
 
         /* Rabbit Animation */
         .rabbit-container {
+            display: none;
             position: absolute;
-            top: 20px;
-            left: 20px;
-            width: 200px;
-            height: 200px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            transition: opacity 1s ease-in-out;
         }
 
         .rabbit-container img {
@@ -149,15 +156,6 @@
             100% { opacity: 1; }
         }
 
-        .rabbit-container:hover img:first-child {
-            animation: evilEyes 2s forwards;
-        }
-
-        .rabbit-container:hover img:last-child {
-            opacity: 1;
-            animation: evilEyes 2s forwards;
-        }
-
         /* Media query for smaller devices */
         @media only screen and (max-width: 600px) {
             body {
@@ -175,8 +173,8 @@
             }
 
             .rabbit-container {
-                width: 150px;
-                height: 150px;
+                width: 200px;
+                height: 200px;
             }
 
             .overlay::before {
@@ -189,7 +187,6 @@
                     transparent 100%);
             }
         }
-
     </style>
 </head>
 <body>
@@ -204,13 +201,13 @@
         <p class="output" style="animation-delay: 10s;">Explore, adapt, and uncover the secrets of this new world...</p>
         <p class="output" style="animation-delay: 12s;">Prepare yourself for the ultimate survival experience...</p>
         <p class="output" style="animation-delay: 14s;">Go back to <a href="https://aryanpadhye.com">your previous life</a>...</p>
-        <p class="output" style="animation-delay: 16s;">Or see how deep the rabbit hole goes: <a href="http://your-mycoverse-homepage.com">continue to Mycoverse</a>...</p>
+        <p class="output" style="animation-delay: 16s;">Or see how deep the rabbit hole goes: <a id="rabbitTrigger" href="javascript:void(0);">continue to Mycoverse</a>...</p>
     </div>
 
     <!-- Rabbit Animation -->
-    <div class="rabbit-container">
-        <img src="assets/cute_rabbit.png" alt="Cute Rabbit">
-        <img src="assets/evil_rabbit.png" alt="Evil Rabbit">
+    <div class="rabbit-container" id="rabbitContainer">
+        <img id="cuteRabbit" src="assets/cute_rabbit.png" alt="Cute Rabbit">
+        <img id="evilRabbit" src="assets/evil_rabbit.png" alt="Evil Rabbit">
     </div>
 
     <!-- Background music -->
@@ -218,6 +215,27 @@
         <source src="assets/background_music.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
+
+    <script>
+        document.getElementById('rabbitTrigger').addEventListener('click', function() {
+            var rabbitContainer = document.getElementById('rabbitContainer');
+            var cuteRabbit = document.getElementById('cuteRabbit');
+            var evilRabbit = document.getElementById('evilRabbit');
+            
+            rabbitContainer.style.display = 'block';
+            cuteRabbit.style.opacity = 1;
+
+            setTimeout(function() {
+                cuteRabbit.style.opacity = 0;
+                evilRabbit.style.opacity = 1;
+            }, 2000); // Show cute rabbit for 2 seconds
+
+            setTimeout(function() {
+                window.location.href = "https://aryanpadhye.com/wip";
+            }, 4000); // Redirect after 4 seconds
+        });
+    </script>
 </body>
 </html>
+
 
