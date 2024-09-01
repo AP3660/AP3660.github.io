@@ -24,10 +24,6 @@
                 0 0 1ex rgba(51, 255, 51, 1),
                 0 0 2px rgba(255, 255, 255, 0.8);
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
         }
 
         .noise {
@@ -86,12 +82,12 @@
 
         .terminal {
             box-sizing: inherit;
-            position: relative;
-            height: auto;
+            position: absolute;
+            height: 100%;
+            width: 1000px;
             max-width: 100%;
             padding: 4rem;
             text-transform: uppercase;
-            text-align: center;
         }
 
         .output {
@@ -126,37 +122,7 @@
             content: "]";
         }
 
-        /* Rabbit Animation */
-        .rabbit-container {
-            display: none;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 300px;
-            height: 300px;
-            transition: opacity 1s ease-in-out;
-        }
-
-        .rabbit-container img {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            transition: opacity 1s ease-in-out;
-        }
-
-        .rabbit-container img:last-child {
-            opacity: 0;
-        }
-
-        @keyframes evilEyes {
-            0% { opacity: 0; }
-            50% { opacity: 0; }
-            51% { opacity: 1; }
-            100% { opacity: 1; }
-        }
-
-        /* Media query for smaller devices */
+        /* Media Query for Mobile Devices */
         @media only screen and (max-width: 600px) {
             body {
                 font-size: 1rem;
@@ -172,11 +138,6 @@
                     0 0 1px rgba(255, 255, 255, 0.8);
             }
 
-            .rabbit-container {
-                width: 200px;
-                height: 200px;
-            }
-
             .overlay::before {
                 background-image: linear-gradient(
                     0deg,
@@ -187,6 +148,7 @@
                     transparent 100%);
             }
         }
+
     </style>
 </head>
 <body>
@@ -201,13 +163,7 @@
         <p class="output" style="animation-delay: 10s;">Explore, adapt, and uncover the secrets of this new world...</p>
         <p class="output" style="animation-delay: 12s;">Prepare yourself for the ultimate survival experience...</p>
         <p class="output" style="animation-delay: 14s;">Go back to <a href="https://aryanpadhye.com">your previous life</a>...</p>
-        <p class="output" style="animation-delay: 16s;">Or see how deep the rabbit hole goes: <a id="rabbitTrigger" href="javascript:void(0);">continue to Mycoverse</a>...</p>
-    </div>
-
-    <!-- Rabbit Animation -->
-    <div class="rabbit-container" id="rabbitContainer">
-        <img id="cuteRabbit" src="assets/cute_rabbit.png" alt="Cute Rabbit">
-        <img id="evilRabbit" src="assets/evil_rabbit.png" alt="Evil Rabbit">
+        <p class="output" style="animation-delay: 16s;">Or see how deep the rabbit hole goes: <a href="http://your-mycoverse-homepage.com">continue to Mycoverse</a>...</p>
     </div>
 
     <!-- Background music -->
@@ -215,27 +171,5 @@
         <source src="assets/background_music.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
-
-    <script>
-        document.getElementById('rabbitTrigger').addEventListener('click', function() {
-            var rabbitContainer = document.getElementById('rabbitContainer');
-            var cuteRabbit = document.getElementById('cuteRabbit');
-            var evilRabbit = document.getElementById('evilRabbit');
-            
-            rabbitContainer.style.display = 'block';
-            cuteRabbit.style.opacity = 1;
-
-            setTimeout(function() {
-                cuteRabbit.style.opacity = 0;
-                evilRabbit.style.opacity = 1;
-            }, 2000); // Show cute rabbit for 2 seconds
-
-            setTimeout(function() {
-                window.location.href = "https://aryanpadhye.com/wip";
-            }, 4000); // Redirect after 4 seconds
-        });
-    </script>
 </body>
 </html>
-
-
