@@ -4,133 +4,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aryan Padhye Portfolio</title>
+    <title>Welcome to Aryan Padhye's Portfolio</title>
     <style>
-        /* Reset some default styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        html, body { 
+            height: 100%; 
+            margin: 0; 
+            overflow: hidden;
         }
-
-        body {
-            background-color: #000000;
-            color: #00FF00;
-            font-family: "Courier New", Courier, monospace;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            padding: 20px;
+        body { 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            background: #000; 
         }
-
-        header {
-            text-align: center;
-            background-color: #FF00FF;
-            padding: 20px;
-            border: 5px solid #00FFFF;
-            margin-bottom: 20px;
-        }
-
-        header h1 {
-            font-size: 2.5em;
-            color: #00FFFF;
-            text-shadow: 2px 2px #FF0000;
-        }
-
-        nav {
-            text-align: center;
-            background-color: #0000FF;
-            padding: 10px;
-            margin-bottom: 20px;
-            border-bottom: 5px solid #FFFF00;
-        }
-
-        nav a {
-            color: #FFFF00;
-            text-decoration: none;
-            font-weight: bold;
-            margin: 0 15px;
-            padding: 5px 10px;
-            border: 2px solid #00FFFF;
-            background-color: #FF00FF;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
-            background-color: #00FFFF;
-            color: #FF00FF;
-        }
-
         main {
+            display: flex;
+        }
+        p {
+            line-height: 1;
+        }
+        span {
+            display: block;
+            width: 2vmax; 
+            height: 2vmax; 
+            font-size: 2vmax; 
+            color: #9bff9b11;
             text-align: center;
-            padding: 20px;
-            background-color: #00FFFF;
-            border: 5px dotted #FF00FF;
-            margin-bottom: 20px;
-        }
-
-        main h2 {
-            font-size: 2em;
-            color: #FF0000;
-            margin-bottom: 20px;
-            text-shadow: 1px 1px #00FF00;
-        }
-
-        footer {
-            text-align: center;
-            background-color: #FF00FF;
-            padding: 20px;
-            border-top: 5px solid #00FFFF;
-            margin-top: auto;
-        }
-
-        footer p {
-            margin: 10px 0;
-        }
-
-        footer a {
-            color: #00FFFF;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-            color: #FF00FF;
+            font-family: "Helvetica Neue", Helvetica, sans-serif;
         }
     </style>
 </head>
 
 <body>
-    <!-- Header -->
-    <header>
-        <h1>Aryan Padhye</h1>
-    </header>
+    <main></main>
 
-    <!-- Navigation -->
-    <nav>
-        <a href="#">Home</a> |
-        <a href="#">My Portfolio</a> |
-        <a href="#">About</a>
-    </nav>
+    <script>
+        function r(from, to) {
+            return ~~(Math.random() * (to - from + 1) + from);
+        }
+        function pick() {
+            return arguments[r(0, arguments.length - 1)];
+        }
+        function getChar() {
+            return pick(
+                'ᔑ', 'ʖ', 'ᓵ', '↸', 'ᒷ', '⎓', '⊣', '⍑', '╎', '⋮', 'ꖌ', 'ꖎ', 'ᒲ', 'リ', '𝙹', '!', '¡', 'ᑑ', '∷', 'ᓭ', 'ℸ', '̣', '⚍', '⍊', '∴', '̇', '/', '||', '⨅'
+            );
+        }
+        function loop(fn, delay) {
+            let stamp = Date.now();
+            function _loop() {
+                if (Date.now() - stamp >= delay) {
+                    fn(); stamp = Date.now();
+                }
+                requestAnimationFrame(_loop);
+            }
+            requestAnimationFrame(_loop);
+        }
+        class Char {
+            constructor() {
+                this.element = document.createElement('span');
+                this.mutate();
+            }
+            mutate() {
+                this.element.textContent = getChar();
+            }
+        }
+        class Trail {
+            constructor(list = [], options) {
+                this.list = list;
+                this.options = Object.assign(
+                    { size: 10, offset: 0 }, options
+                );
+                this.body = [];
+                this.move();
+            }
+            traverse(fn) {
+                this.body.forEach((n, i) => {
+                    let last = (i == this.body.length - 1);
+                    if (n) fn(n, i, last);
+                });
+            }
+            move() {
+                this.body = [];
+                let { offset, size } = this.options;
+                for (let i = 0; i < size; ++i) {
+                    let item = this.list[offset + i - size + 1];
+                    this.body.push(item);
+                }
+                this.options.offset = 
+                    (offset + 1) % (this.list.length + size - 1);
+            }
+        }
+        class Rain {
+            constructor({ target, row }) {
+                this.element = document.createElement('p');
+                this.build(row);
+                if (target) {
+                    target.appendChild(this.element);
+                }
+                this.drop();
+            }
+            build(row = 20) {
+                let root = document.createDocumentFragment();
+                let chars = [];
+                for (let i = 0; i < row; ++i) {
+                    let c = new Char();
+                    root.appendChild(c.element);
+                    chars.push(c);
+                    if (Math.random() < .5) {
+                        loop(() => c.mutate(), r(1e3, 5e3));
+                    }
+                }
+                this.trail = new Trail(chars, { 
+                    size: r(10, 30), offset: r(0, 100) 
+                });
+                this.element.appendChild(root); 
+            }
+            drop() {
+                let trail = this.trail;
+                let len = trail.body.length;
+                let delay = r(10, 100);
+                loop(() => {
+                    trail.move();
+                    trail.traverse((c, i, last) => {
+                        c.element.style = `
+                            color: hsl(136, 100%, ${85 / len * (i + 1)}%)
+                        `;
+                        if (last) {
+                            c.mutate();
+                            c.element.style = `
+                                color: hsl(136, 100%, 85%);
+                                text-shadow:
+                                    0 0 .5em #fff,
+                                    0 0 .5em currentColor;
+                            `;
+                        }
+                    });
+                }, delay);
+            }
+        }
 
-    <!-- Main Content -->
-    <main>
-        <h2>Hello</h2>
-    </main>
+        const main = document.querySelector('main');
+        for (let i = 0; i < 50; ++i) {
+            new Rain({ target: main, row: 50 });
+        }
 
-    <!-- Footer -->
-    <footer>
-        <p>Email: <a href="mailto:padhyearyan@gmail.com">padhyearyan@gmail.com</a></p>
-        <p>Contact: <a href="tel:+6582683421">+65 82683421</a></p>
-        <p>
-            <a href="#">LinkedIn</a> |
-            <a href="#">Instagram</a> |
-            <a href="#">GitHub</a> |
-            <a href="#">YouTube</a>
-        </p>
-    </footer>
-
+        // Stop the animation after 5 seconds and redirect to /home
+        setTimeout(() => {
+            main.innerHTML = '';
+            window.location.href = 'http://aryanpadhye.com/home';
+        }, 5000);
+    </script>
 </body>
-</html>
 
+</html>
