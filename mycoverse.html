@@ -122,7 +122,43 @@
             content: "]";
         }
 
-        /* Media Query for Mobile Devices */
+        /* Rabbit Animation */
+        .rabbit-container {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 200px;
+            height: 200px;
+        }
+
+        .rabbit-container img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .rabbit-container img:last-child {
+            opacity: 0;
+        }
+
+        @keyframes evilEyes {
+            0% { opacity: 0; }
+            50% { opacity: 0; }
+            51% { opacity: 1; }
+            100% { opacity: 1; }
+        }
+
+        .rabbit-container:hover img:first-child {
+            animation: evilEyes 2s forwards;
+        }
+
+        .rabbit-container:hover img:last-child {
+            opacity: 1;
+            animation: evilEyes 2s forwards;
+        }
+
+        /* Media query for smaller devices */
         @media only screen and (max-width: 600px) {
             body {
                 font-size: 1rem;
@@ -136,6 +172,11 @@
                 text-shadow:
                     0 0 0.5ex rgba(51, 255, 51, 1),
                     0 0 1px rgba(255, 255, 255, 0.8);
+            }
+
+            .rabbit-container {
+                width: 150px;
+                height: 150px;
             }
 
             .overlay::before {
@@ -163,7 +204,13 @@
         <p class="output" style="animation-delay: 10s;">Explore, adapt, and uncover the secrets of this new world...</p>
         <p class="output" style="animation-delay: 12s;">Prepare yourself for the ultimate survival experience...</p>
         <p class="output" style="animation-delay: 14s;">Go back to <a href="https://aryanpadhye.com">your previous life</a>...</p>
-        <p class="output" style="animation-delay: 16s;">Or see how deep the rabbit hole goes: <a href="http://aryanpadhye.com/wip">continue to Mycoverse</a>...</p>
+        <p class="output" style="animation-delay: 16s;">Or see how deep the rabbit hole goes: <a href="http://your-mycoverse-homepage.com">continue to Mycoverse</a>...</p>
+    </div>
+
+    <!-- Rabbit Animation -->
+    <div class="rabbit-container">
+        <img src="assets/cute_rabbit.png" alt="Cute Rabbit">
+        <img src="assets/evil_rabbit.png" alt="Evil Rabbit">
     </div>
 
     <!-- Background music -->
@@ -173,3 +220,4 @@
     </audio>
 </body>
 </html>
+
