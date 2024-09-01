@@ -64,6 +64,7 @@
             margin: 0 15px;
             padding: 5px 10px;
             border: 2px solid #FF8552; /* Coral */
+            display: inline-block;
         }
 
         nav a:hover {
@@ -111,6 +112,49 @@
             text-decoration: underline;
             color: #85FFC7; /* Aquamarine */
         }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+                padding: 10px;
+            }
+
+            nav a {
+                font-size: 1em;
+                margin: 5px 10px;
+                padding: 5px;
+            }
+
+            main {
+                padding: 15px;
+            }
+
+            footer {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.5em;
+                padding: 8px;
+            }
+
+            nav a {
+                font-size: 0.9em;
+                margin: 5px 8px;
+                padding: 4px;
+            }
+
+            main {
+                padding: 10px;
+            }
+
+            footer {
+                padding: 10px;
+            }
+        }
     </style>
 </head>
 
@@ -147,4 +191,5 @@
 </body>
 
 </html>
+
 
