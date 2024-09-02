@@ -21,7 +21,7 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            padding-top: 150px; /* Adjusted for fixed header and nav */
+            padding-top: 100px; /* Adjusted for fixed nav */
             padding-bottom: 60px; /* Adjusted for fixed footer */
             opacity: 0; /* Initial state for fade-in animation */
             animation: fadeIn 2s forwards; /* Apply fade-in animation */
@@ -38,17 +38,28 @@
             background-color: #0077B6; /* Blue */
             padding: 20px;
             border: 5px solid #03045E; /* Dark Blue */
-            position: fixed;
+            margin-bottom: 20px;
+            position: absolute; /* Positioned at the top */
             width: 100%;
             top: 0;
             left: 0;
             z-index: 1000;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            transition: top 0.3s; /* Smooth transition for hiding */
+            display: flex; /* Flexbox for vertical centering */
+            justify-content: center; /* Horizontal centering */
+            align-items: center; /* Vertical centering */
+            height: 60px; /* Set a height for the header */
+        }
+
+        header.hidden {
+            top: -100px; /* Hides the header by moving it up */
         }
 
         header h1 {
             font-size: 2.5em;
             color: #CAF0F8; /* Very Light Blue */
+            margin: 0; /* Remove margin to avoid alignment issues */
         }
 
         nav {
@@ -58,10 +69,14 @@
             border-bottom: 5px solid #00B4D8; /* Sky Blue */
             position: fixed;
             width: 100%;
-            top: 80px; /* Below the header */
+            top: 60px; /* Adjusted to appear below the header initially */
             left: 0;
             z-index: 1000;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        nav.fixed {
+            top: 0; /* Moves the nav bar to the top when header is hidden */
         }
 
         nav a {
@@ -127,7 +142,6 @@
         @media (max-width: 768px) {
             header h1 {
                 font-size: 2em;
-                padding: 10px;
             }
 
             nav a {
@@ -148,7 +162,6 @@
         @media (max-width: 480px) {
             header h1 {
                 font-size: 1.5em;
-                padding: 8px;
             }
 
             nav a {
@@ -170,12 +183,12 @@
 
 <body>
     <!-- Header -->
-    <header>
+    <header id="header">
         <h1>Aryan Padhye</h1>
     </header>
 
     <!-- Navigation -->
-    <nav>
+    <nav id="nav">
         <a href="https://aryanpadhye.com/home">Home</a> |
         <a href="https://aryanpadhye.com/wip">My Portfolio</a> |
         <a href="https://aryanpadhye.com/wip">About</a> |
@@ -200,7 +213,20 @@
         </p>
     </footer>
 
+    <script>
+        window.addEventListener('scroll', function () {
+            var header = document.getElementById('header');
+            var nav = document.getElementById('nav');
+            if (window.scrollY > 50) {
+                header.classList.add('hidden');
+                nav.classList.add('fixed');
+            } else {
+                header.classList.remove('hidden');
+                nav.classList.remove('fixed');
+            }
+        });
+    </script>
+
 </body>
 
 </html>
-
