@@ -21,7 +21,8 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            padding: 20px;
+            padding-top: 150px; /* Adjusted for fixed header and nav */
+            padding-bottom: 60px; /* Adjusted for fixed footer */
             opacity: 0; /* Initial state for fade-in animation */
             animation: fadeIn 2s forwards; /* Apply fade-in animation */
         }
@@ -37,9 +38,12 @@
             background-color: #0077B6; /* Blue */
             padding: 20px;
             border: 5px solid #03045E; /* Dark Blue */
-            margin-bottom: 20px;
-            opacity: 0; /* Initial state for fade-in animation */
-            animation: fadeIn 2s 0.5s forwards; /* Delay the header fade-in */
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         header h1 {
@@ -51,10 +55,13 @@
             text-align: center;
             background-color: #03045E; /* Dark Blue */
             padding: 10px;
-            margin-bottom: 20px;
             border-bottom: 5px solid #00B4D8; /* Sky Blue */
-            opacity: 0; /* Initial state for fade-in animation */
-            animation: fadeIn 2s 1s forwards; /* Delay the nav fade-in */
+            position: fixed;
+            width: 100%;
+            top: 80px; /* Below the header */
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         nav a {
@@ -75,7 +82,7 @@
 
         main {
             text-align: center;
-            padding: 20px;
+            padding: 60px 20px; /* Adjusted padding for mobile and desktop */
             background-color: #90E0EF; /* Light Blue */
             border: 5px dotted #0077B6; /* Blue */
             margin-bottom: 20px;
@@ -94,9 +101,12 @@
             background-color: #0077B6; /* Blue */
             padding: 20px;
             border-top: 5px solid #03045E; /* Dark Blue */
-            margin-top: auto;
-            opacity: 0; /* Initial state for fade-in animation */
-            animation: fadeIn 2s 2s forwards; /* Delay the footer fade-in */
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1);
         }
 
         footer p {
@@ -127,7 +137,7 @@
             }
 
             main {
-                padding: 15px;
+                padding: 40px 15px;
             }
 
             footer {
@@ -148,7 +158,7 @@
             }
 
             main {
-                padding: 10px;
+                padding: 30px 10px;
             }
 
             footer {
@@ -193,3 +203,4 @@
 </body>
 
 </html>
+
