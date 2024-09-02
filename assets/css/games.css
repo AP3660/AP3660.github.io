@@ -1,8 +1,6 @@
-/* Styles specific to the games page that are not in styles.css */
-
 /* Carousel specific styles */
 .game-section {
-    padding: 60px 50px; /* Adjusted padding for games section */
+    padding: 60px 50px 80px; /* Increased bottom padding for more space */
     position: relative;
 }
 
@@ -108,7 +106,7 @@
 /* Media Queries for Games Page */
 @media (min-width: 992px) and (max-width: 1199px) {
     .game-section {
-        padding: 50px 30px;
+        padding: 50px 30px 70px; /* Increased bottom padding */
     }
 
     .game-section .item {
@@ -129,7 +127,7 @@
 
 @media (min-width: 768px) and (max-width: 991px) {
     .game-section {
-        padding: 50px 30px 40px;
+        padding: 50px 30px 60px; /* Increased bottom padding */
     }
 
     .game-section .item {
@@ -150,7 +148,7 @@
 
 @media (max-width: 767px) {
     .game-section {
-        padding: 30px 15px 20px;
+        padding: 30px 15px 50px; /* Significantly increased bottom padding for smaller screens */
     }
 
     .game-section .item {
