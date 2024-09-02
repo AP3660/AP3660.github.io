@@ -1,6 +1,6 @@
 /* Carousel specific styles */
 .game-section {
-    padding: 60px 50px 80px; /* Increased bottom padding for more space */
+    padding: 40px 50px 80px; /* Reduced top padding and increased bottom padding */
     position: relative;
 }
 
@@ -106,7 +106,7 @@
 /* Media Queries for Games Page */
 @media (min-width: 992px) and (max-width: 1199px) {
     .game-section {
-        padding: 50px 30px 70px; /* Increased bottom padding */
+        padding: 30px 30px 70px; /* Reduced top padding */
     }
 
     .game-section .item {
@@ -127,7 +127,7 @@
 
 @media (min-width: 768px) and (max-width: 991px) {
     .game-section {
-        padding: 50px 30px 60px; /* Increased bottom padding */
+        padding: 30px 30px 60px; /* Reduced top padding */
     }
 
     .game-section .item {
@@ -148,7 +148,7 @@
 
 @media (max-width: 767px) {
     .game-section {
-        padding: 30px 15px 50px; /* Significantly increased bottom padding for smaller screens */
+        padding: 20px 15px 50px; /* Reduced top padding significantly for smaller screens */
     }
 
     .game-section .item {
