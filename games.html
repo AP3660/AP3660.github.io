@@ -377,6 +377,63 @@
             text-decoration: underline;
             color: #00B4D8; /* Sky Blue */
         }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                height: 50px;
+            }
+
+            header h1 {
+                font-size: 2em;
+            }
+
+            nav {
+                top: 50px;
+            }
+
+            nav a {
+                font-size: 1em;
+                margin: 5px 10px;
+                padding: 5px;
+            }
+
+            .game-section {
+                padding: 40px 20px;
+            }
+
+            footer {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                height: 45px;
+            }
+
+            header h1 {
+                font-size: 1.5em;
+            }
+
+            nav {
+                top: 45px;
+            }
+
+            nav a {
+                font-size: 0.9em;
+                margin: 5px 8px;
+                padding: 4px;
+            }
+
+            .game-section {
+                padding: 30px 15px;
+            }
+
+            footer {
+                padding: 10px;
+            }
+        }
     </style>
 </head>
 
@@ -397,7 +454,7 @@
 </nav>
 
 <section class="game-section">
-    <h2 class="line-title">My Games</h2>
+    <h2 class="line-title">Trending Games</h2>
     <div class="owl-carousel custom-carousel owl-theme">
         <div class="item active" style="background-image: url('assets/mycoverse.jpg');">
             <div class="item-desc">
@@ -436,7 +493,11 @@
     $(document).ready(function () {
         var owl = $(".custom-carousel").owlCarousel({
             autoWidth: true,
-            loop: true
+            loop: false, // Disable loop to prevent cyclic behavior
+            margin: 10,
+            nav: false,
+            dots: false,
+            items: 1
         });
 
         // Right arrow button to move the carousel
@@ -465,3 +526,4 @@
 
 </body>
 </html>
+
