@@ -1,84 +1,171 @@
-<!DOCTYPE html>
-<html lang="en">
+/* Carousel specific styles */
+.game-section {
+    padding: 30px 50px 80px; /* Further reduced top padding and maintained bottom padding */
+    position: relative;
+}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Games - Aryan Padhye</title>
+.game-section .owl-stage {
+    margin: 15px 0;
+    display: flex;
+    display: -webkit-flex;
+}
 
-    <!-- Importing Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Courier+New:wght@400;700&display=swap" rel="stylesheet">
+.game-section .item {
+    margin: 0 15px 60px;
+    width: 320px;
+    height: 400px;
+    display: flex;
+    display: -webkit-flex;
+    align-items: flex-end;
+    -webkit-align-items: flex-end;
+    background: #343434 no-repeat center center / cover;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+    cursor: pointer;
+}
 
-    <!-- Importing Global and Game Specific Stylesheets -->
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="assets/css/games.css">
+.game-section .item.active {
+    width: 500px;
+    box-shadow: 12px 40px 40px rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: 12px 40px 40px rgba(0, 0, 0, 0.25);
+}
 
-    <!-- Importing Owl Carousel CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
-</head>
+.game-section .item:after {
+    content: "";
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+}
 
-<body>
+.game-section .item-desc {
+    padding: 0 24px 12px;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    transform: translateY(calc(100% - 54px));
+    -webkit-transform: translateY(calc(100% - 54px));
+    transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+}
 
-    <!-- Header (loaded via partials) -->
-    <header id="header"></header>
+.game-section .item.active .item-desc {
+    transform: none;
+    -webkit-transform: none;
+}
 
-    <section class="game-section">
-        <h2 class="line-title">My Games</h2>
-        <div class="owl-carousel custom-carousel owl-theme">
-            <div class="item active" style="background-image: url('assets/mycoverse.jpg');">
-                <div class="item-desc">
-                    <h3>Mycoverse</h3>
-                    <p>Stay tuned for more details on this game!</p>
-                </div>
-            </div>
-            <div class="item" style="background-image: url('assets/locked_down.png');">
-                <div class="item-desc">
-                    <h3>Locked Down</h3>
-                    <p>A space adventure in which Spaceman Spiff tries to escape the Vogons and reach safety.</p>
-                </div>
-            </div>
-            <!-- Add more items here as needed -->
-        </div>
-        <button class="carousel-button-right">&#9654;</button> <!-- Right arrow button -->
-    </section>
+.game-section .item-desc p {
+    opacity: 0;
+    -webkit-transform: translateY(32px);
+    transform: translateY(32px);
+    transition: all 0.4s ease-in-out 0.2s;
+    -webkit-transition: all 0.4s ease-in-out 0.2s;
+}
 
-    <!-- Footer (loaded via partials) -->
-    <footer id="footer"></footer>
+.game-section .item.active .item-desc p {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+}
 
-    <!-- Importing jQuery and Owl Carousel JS -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+.game-section .owl-theme.custom-carousel .owl-dots {
+    margin-top: -20px;
+    position: relative;
+    z-index: 5;
+}
 
-    <!-- Script to handle unique game-specific functionalities -->
-    <script>
-        $(document).ready(function () {
-            var owl = $(".custom-carousel").owlCarousel({
-                autoWidth: true,
-                loop: false, // Disable loop to prevent cyclic behavior
-                margin: 10,
-                nav: false,
-                dots: false,
-                items: 1
-            });
+/* Right Arrow Button */
+.carousel-button-right {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    background-color: #0077B6; /* Blue */
+    border: none;
+    color: #CAF0F8; /* Very Light Blue */
+    font-size: 24px;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+}
 
-            // Right arrow button to move the carousel
-            $(".carousel-button-right").click(function () {
-                owl.trigger('next.owl.carousel');
-            });
+.carousel-button-right:hover {
+    background-color: #00B4D8; /* Sky Blue */
+}
 
-            $(".custom-carousel .item").click(function () {
-                $(".custom-carousel .item").not($(this)).removeClass("active");
-                $(this).toggleClass("active");
-            });
-        });
+/* Media Queries for Games Page */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .game-section {
+        padding: 20px 30px 70px; /* Reduced top padding */
+    }
 
-        // Header and nav scroll effect moved to external script if necessary
-    </script>
+    .game-section .item {
+        margin: 0 12px 60px;
+        width: 260px;
+        height: 360px;
+    }
 
-    <!-- Script to load header and footer partials -->
-    <script src="assets/js/main.js"></script>
+    .game-section .item.active {
+        width: 400px;
+    }
 
-</body>
+    .game-section .item-desc {
+        transform: translateY(calc(100% - 46px));
+        -webkit-transform: translateY(calc(100% - 46px));
+    }
+}
 
-</html>
+@media (min-width: 768px) and (max-width: 991px) {
+    .game-section {
+        padding: 20px 30px 60px; /* Reduced top padding */
+    }
+
+    .game-section .item {
+        margin: 0 12px 60px;
+        width: 240px;
+        height: 330px;
+    }
+
+    .game-section .item.active {
+        width: 360px;
+    }
+
+    .game-section .item-desc {
+        transform: translateY(calc(100% - 42px));
+        -webkit-transform: translateY(calc(100% - 42px));
+    }
+}
+
+@media (max-width: 767px) {
+    .game-section {
+        padding: 10px 15px 50px; /* Significantly reduced top padding for smaller screens */
+    }
+
+    .game-section .item {
+        margin: 0 10px 40px;
+        width: 200px;
+        height: 280px;
+    }
+
+    .game-section .item.active {
+        width: 270px;
+        box-shadow: 6px 10px 10px rgba(0, 0, 0, 0.25);
+        -webkit-box-shadow: 6px 10px 10px rgba(0, 0, 0, 0.25);
+    }
+
+    .game-section .item-desc {
+        padding: 0 14px 5px;
+        transform: translateY(calc(100% - 42px));
+        -webkit-transform: translateY(calc(100% - 42px));
+    }
+}
