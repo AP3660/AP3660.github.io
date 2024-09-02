@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Carousel - Aryan Padhye</title>
+
+    <!-- Importing Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Courier+New:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Importing Owl Carousel CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+    <style>
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #CAF0F8; /* Very Light Blue */
+            color: #03045E; /* Dark Blue */
+            font-family: "Courier New", Courier, monospace;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        h2 {
+            margin-bottom: 48px;
+            padding-bottom: 16px;
+            font-size: 20px;
+            line-height: 28px;
+            font-weight: 700;
+            position: relative;
+            text-transform: capitalize;
+        }
+
+        h3 {
+            margin: 0 0 10px;
+            font-size: 28px;
+            line-height: 36px;
+        }
+
+        /* -------- title style ------- */
+        .line-title {
+            position: relative;
+            width: 400px;
+        }
+
+        .line-title::before,
+        .line-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            border-radius: 2px;
+        }
+
+        .line-title::before {
+            width: 100%;
+            background: #f2f2f2;
+        }
+
+        .line-title::after {
+            width: 32px;
+            background: #0077B6;
+        }
+
+        /******* Middle section CSS Start ******/
+        /* -------- Landing page ------- */
+        .game-section {
+            padding: 60px 50px;
+            position: relative;
+        }
+
+        .game-section .owl-stage {
+            margin: 15px 0;
+            display: flex;
+            display: -webkit-flex;
+        }
+
+        .game-section .item {
+            margin: 0 15px 60px;
+            width: 320px;
+            height: 400px;
+            display: flex;
+            display: -webkit-flex;
+            align-items: flex-end;
+            -webkit-align-items: flex-end;
+            background: #343434 no-repeat center center / cover;
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            transition: all 0.4s ease-in-out;
+            -webkit-transition: all 0.4s ease-in-out;
+            cursor: pointer;
+        }
+
+        .game-section .item.active {
+            width: 500px;
+            box-shadow: 12px 40px 40px rgba(0, 0, 0, 0.25);
+            -webkit-box-shadow: 12px 40px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .game-section .item:after {
+            content: "";
+            display: block;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            left: 0;
+            top: 0;
+            background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+        }
+
+        .game-section .item-desc {
+            padding: 0 24px 12px;
+            color: #fff;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            transform: translateY(calc(100% - 54px));
+            -webkit-transform: translateY(calc(100% - 54px));
+            transition: all 0.4s ease-in-out;
+            -webkit-transition: all 0.4s ease-in-out;
+        }
+
+        .game-section .item.active .item-desc {
+            transform: none;
+            -webkit-transform: none;
+        }
+
+        .game-section .item-desc p {
+            opacity: 0;
+            -webkit-transform: translateY(32px);
+            transform: translateY(32px);
+            transition: all 0.4s ease-in-out 0.2s;
+            -webkit-transition: all 0.4s ease-in-out 0.2s;
+        }
+
+        .game-section .item.active .item-desc p {
+            opacity: 1;
+            -webkit-transform: translateY(0);
+            transform: translateY(0);
+        }
+
+        .game-section .owl-theme.custom-carousel .owl-dots {
+            margin-top: -20px;
+            position: relative;
+            z-index: 5;
+        }
+
+        /***** responsive css Start ******/
+        @media (min-width: 992px) and (max-width: 1199px) {
+            h2 {
+                margin-bottom: 32px;
+            }
+
+            h3 {
+                margin: 0 0 8px;
+                font-size: 24px;
+                line-height: 32px;
+            }
+
+            .game-section {
+                padding: 50px 30px;
+            }
+
+            .game-section .item {
+                margin: 0 12px 60px;
+                width: 260px;
+                height: 360px;
+            }
+
+            .game-section .item.active {
+                width: 400px;
+            }
+
+            .game-section .item-desc {
+                transform: translateY(calc(100% - 46px));
+                -webkit-transform: translateY(calc(100% - 46px));
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 991px) {
+            h2 {
+                margin-bottom: 32px;
+            }
+
+            h3 {
+                margin: 0 0 8px;
+                font-size: 24px;
+                line-height: 32px;
+            }
+
+            .line-title {
+                width: 330px;
+            }
+
+            .game-section {
+                padding: 50px 30px 40px;
+            }
+
+            .game-section .item {
+                margin: 0 12px 60px;
+                width: 240px;
+                height: 330px;
+            }
+
+            .game-section .item.active {
+                width: 360px;
+            }
+
+            .game-section .item-desc {
+                transform: translateY(calc(100% - 42px));
+                -webkit-transform: translateY(calc(100% - 42px));
+            }
+        }
+
+        @media (max-width: 767px) {
+            body {
+                font-size: 14px;
+            }
+
+            h2 {
+                margin-bottom: 20px;
+            }
+
+            h3 {
+                margin: 0 0 8px;
+                font-size: 19px;
+                line-height: 24px;
+            }
+
+            .line-title {
+                width: 250px;
+            }
+
+            .game-section {
+                padding: 30px 15px 20px;
+            }
+
+            .game-section .item {
+                margin: 0 10px 40px;
+                width: 200px;
+                height: 280px;
+            }
+
+            .game-section .item.active {
+                width: 270px;
+                box-shadow: 6px 10px 10px rgba(0, 0, 0, 0.25);
+                -webkit-box-shadow: 6px 10px 10px rgba(0, 0, 0, 0.25);
+            }
+
+            .game-section .item-desc {
+                padding: 0 14px 5px;
+                transform: translateY(calc(100% - 42px));
+                -webkit-transform: translateY(calc(100% - 42px));
+            }
+        }
+
+        /* Right Arrow Button */
+        .carousel-button-right {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            background-color: #0077B6; /* Blue */
+            border: none;
+            color: #CAF0F8; /* Very Light Blue */
+            font-size: 24px;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s;
+        }
+
+        .carousel-button-right:hover {
+            background-color: #00B4D8; /* Sky Blue */
+        }
+
+        header {
+            text-align: center;
+            background-color: #0077B6; /* Blue */
+            padding: 20px;
+            border: 5px solid #03045E; /* Dark Blue */
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            color: #CAF0F8; /* Very Light Blue */
+        }
+
+        nav {
+            text-align: center;
+            background-color: #03045E; /* Dark Blue */
+            padding: 10px;
+            margin-bottom: 20px;
+            border-bottom: 5px solid #00B4D8; /* Sky Blue */
+        }
+
+        nav a {
+            color: #CAF0F8; /* Very Light Blue */
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 15px;
+            padding: 5px 10px;
+            border: 2px solid #0077B6; /* Blue */
+            display: inline-block;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+            background-color: #90E0EF; /* Light Blue */
+            color: #03045E; /* Dark Blue */
+        }
+
+        footer {
+            text-align: center;
+            background-color: #0077B6; /* Blue */
+            padding: 20px;
+            border-top: 5px solid #03045E; /* Dark Blue */
+            margin-top: auto;
+        }
+
+        footer p {
+            margin: 10px 0;
+        }
+
+        footer a {
+            color: #03045E; /* Dark Blue */
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+            color: #00B4D8; /* Sky Blue */
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Header -->
+<header>
+    <h1>Aryan Padhye</h1>
+</header>
+
+<!-- Navigation -->
+<nav>
+    <a href="https://aryanpadhye.com/home">Home</a> |
+    <a href="https://aryanpadhye.com/wip">My Portfolio</a> |
+    <a href="https://aryanpadhye.com/wip">About</a> |
+    <a href="https://aryanpadhye.com/games">Games</a> <!-- Link to Games Page -->
+    <a href="https://aryanpadhye.com/mycoverse">MycoVerse</a>
+</nav>
+
+<section class="game-section">
+    <h2 class="line-title">My Games</h2>
+    <div class="owl-carousel custom-carousel owl-theme">
+        <div class="item active" style="background-image: url('assets/mycoverse.jpg');">
+            <div class="item-desc">
+                <h3>Mycoverse</h3>
+                <p>Stay tuned for more details on this game!</p>
+            </div>
+        </div>
+        <div class="item" style="background-image: url('assets/locked_down.png');">
+            <div class="item-desc">
+                <h3>Locked Down</h3>
+                <p>A space adventure in which Spaceman Spiff tries to escape the Vogons and reach safety.</p>
+            </div>
+        </div>
+        <!-- Add more items here as needed -->
+    </div>
+    <button class="carousel-button-right">&#9654;</button> <!-- Right arrow button -->
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>Email: <a href="mailto:padhyearyan@gmail.com">padhyearyan@gmail.com</a></p>
+    <p>Contact: <a href="tel:+6582683421">+65 82683421</a></p>
+    <p>
+        <a href="#">LinkedIn</a> |
+        <a href="#">Instagram</a> |
+        <a href="#">GitHub</a> |
+        <a href="#">YouTube</a>
+    </p>
+</footer>
+
+<!-- Importing jQuery and Owl Carousel JS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        var owl = $(".custom-carousel").owlCarousel({
+            autoWidth: true,
+            loop: true
+        });
+
+        // Right arrow button to move the carousel
+        $(".carousel-button-right").click(function () {
+            owl.trigger('next.owl.carousel');
+        });
+
+        $(".custom-carousel .item").click(function () {
+            $(".custom-carousel .item").not($(this)).removeClass("active");
+            $(this).toggleClass("active");
+        });
+    });
+</script>
+
+</body>
+</html>
