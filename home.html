@@ -38,7 +38,6 @@
             background-color: #0077B6; /* Blue */
             padding: 20px;
             border: 5px solid #03045E; /* Dark Blue */
-            margin-bottom: 20px;
             position: absolute; /* Positioned at the top */
             width: 100%;
             top: 0;
@@ -97,7 +96,7 @@
 
         main {
             text-align: center;
-            padding: 60px 20px; /* Adjusted padding for mobile and desktop */
+            padding: 80px 20px; /* Adjusted padding for mobile and desktop */
             background-color: #90E0EF; /* Light Blue */
             border: 5px dotted #0077B6; /* Blue */
             margin-bottom: 20px;
@@ -140,8 +139,16 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            header {
+                height: 50px;
+            }
+
             header h1 {
                 font-size: 2em;
+            }
+
+            nav {
+                top: 50px;
             }
 
             nav a {
@@ -151,7 +158,7 @@
             }
 
             main {
-                padding: 40px 15px;
+                padding: 70px 15px;
             }
 
             footer {
@@ -160,8 +167,16 @@
         }
 
         @media (max-width: 480px) {
+            header {
+                height: 45px;
+            }
+
             header h1 {
                 font-size: 1.5em;
+            }
+
+            nav {
+                top: 45px;
             }
 
             nav a {
@@ -171,7 +186,7 @@
             }
 
             main {
-                padding: 30px 10px;
+                padding: 60px 10px;
             }
 
             footer {
@@ -230,3 +245,4 @@
 </body>
 
 </html>
+
