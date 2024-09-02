@@ -21,7 +21,7 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            padding-top: 100px; /* Adjusted for fixed nav */
+            padding-top: 150px; /* Increased top padding for header spacing */
             padding-bottom: 60px; /* Adjusted for fixed footer */
             opacity: 0; /* Initial state for fade-in animation */
             animation: fadeIn 2s forwards; /* Apply fade-in animation */
@@ -64,7 +64,7 @@
         nav {
             text-align: center;
             background-color: #03045E; /* Dark Blue */
-            padding: 10px;
+            padding: 15px; /* Added padding to avoid sticking */
             border-bottom: 5px solid #00B4D8; /* Sky Blue */
             position: fixed;
             width: 100%;
@@ -96,12 +96,14 @@
 
         main {
             text-align: center;
-            padding: 80px 20px; /* Adjusted padding for mobile and desktop */
+            padding: 60px 30px 100px; /* Adjusted top padding and height */
             background-color: #90E0EF; /* Light Blue */
             border: 5px dotted #0077B6; /* Blue */
-            margin-bottom: 20px;
+            margin: 20px auto; /* Added margin and centered main content */
+            width: 60%; /* Reduced width of the main content */
             opacity: 0; /* Initial state for fade-in animation */
             animation: fadeIn 2s 1.5s forwards; /* Delay the main fade-in */
+            border-radius: 8px; /* Added border-radius for better aesthetics */
         }
 
         main h2 {
@@ -158,7 +160,9 @@
             }
 
             main {
-                padding: 70px 15px;
+                padding: 60px 20px 70px; /* Adjusted padding for smaller screens */
+                margin: 15px auto;
+                width: 80%; /* Adjusted width for smaller screens */
             }
 
             footer {
@@ -186,7 +190,9 @@
             }
 
             main {
-                padding: 60px 10px;
+                padding: 50px 15px 60px; /* Adjusted padding for smaller screens */
+                margin: 10px auto;
+                width: 90%; /* Adjusted width for smaller screens */
             }
 
             footer {
@@ -245,4 +251,3 @@
 </body>
 
 </html>
-
