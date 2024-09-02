@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locked Down - Aryan Padhye</title>
+
+    <!-- Importing Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Courier+New:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #CAF0F8; /* Very Light Blue */
+            color: #03045E; /* Dark Blue */
+            font-family: "Courier New", Courier, monospace;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding-top: 150px; /* Adjusted for fixed nav */
+            padding-bottom: 60px; /* Adjusted for fixed footer */
+        }
+
+        header {
+            text-align: center;
+            background-color: #0077B6; /* Blue */
+            padding: 20px;
+            border: 5px solid #03045E; /* Dark Blue */
+            position: absolute; /* Positioned at the top */
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            transition: top 0.3s; /* Smooth transition for hiding */
+            display: flex; /* Flexbox for vertical centering */
+            justify-content: center; /* Horizontal centering */
+            align-items: center; /* Vertical centering */
+            height: 60px; /* Set a height for the header */
+        }
+
+        header.hidden {
+            top: -100px; /* Hides the header by moving it up */
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            color: #CAF0F8; /* Very Light Blue */
+            margin: 0; /* Remove margin to avoid alignment issues */
+        }
+
+        nav {
+            text-align: center;
+            background-color: #03045E; /* Dark Blue */
+            padding: 15px; /* Added padding to avoid sticking */
+            border-bottom: 5px solid #00B4D8; /* Sky Blue */
+            position: fixed;
+            width: 100%;
+            top: 60px; /* Adjusted to appear below the header initially */
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        nav.fixed {
+            top: 0; /* Moves the nav bar to the top when header is hidden */
+        }
+
+        nav a {
+            color: #CAF0F8; /* Very Light Blue */
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 15px;
+            padding: 5px 10px;
+            border: 2px solid #0077B6; /* Blue */
+            display: inline-block;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+            background-color: #90E0EF; /* Light Blue */
+            color: #03045E; /* Dark Blue */
+        }
+
+        footer {
+            text-align: center;
+            background-color: #0077B6; /* Blue */
+            padding: 20px;
+            border-top: 5px solid #03045E; /* Dark Blue */
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        footer p {
+            margin: 10px 0;
+        }
+
+        footer a {
+            color: #03045E; /* Dark Blue */
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+            color: #00B4D8; /* Sky Blue */
+        }
+
+        .responsive-frame {
+            border: none;
+            width: 100%;
+            height: 80vh; /* Ensures it doesn't overlap with the footer */
+            margin-top: 20px;
+            border-radius: 8px; /* Rounded corners for better aesthetics */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                height: 50px;
+            }
+
+            header h1 {
+                font-size: 2em;
+            }
+
+            nav {
+                top: 50px;
+            }
+
+            nav a {
+                font-size: 1em;
+                margin: 5px 10px;
+                padding: 5px;
+            }
+
+            .responsive-frame {
+                height: 70vh; /* Adjust height for smaller screens */
+            }
+
+            footer {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                height: 45px;
+            }
+
+            header h1 {
+                font-size: 1.5em;
+            }
+
+            nav {
+                top: 45px;
+            }
+
+            nav a {
+                font-size: 0.9em;
+                margin: 5px 8px;
+                padding: 4px;
+            }
+
+            .responsive-frame {
+                height: 60vh; /* Adjust height for smaller screens */
+            }
+
+            footer {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header id="header">
+        <h1>Aryan Padhye</h1>
+    </header>
+
+    <!-- Navigation -->
+    <nav id="nav">
+        <a href="https://aryanpadhye.com/home">Home</a> |
+        <a href="https://aryanpadhye.com/wip">My Portfolio</a> |
+        <a href="https://aryanpadhye.com/wip">About</a> |
+        <a href="https://aryanpadhye.com/games">Games</a> <!-- Link to Games Page -->
+        <a href="https://aryanpadhye.com/mycoverse">MycoVerse</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <iframe allow="geolocation; microphone; camera; midi; encrypted-media;" src="https://i.simmer.io/@AP360/locked-down" class="responsive-frame"></iframe>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>Email: <a href="mailto:padhyearyan@gmail.com">padhyearyan@gmail.com</a></p>
+        <p>Contact: <a href="tel:+6582683421">+65 82683421</a></p>
+        <p>
+            <a href="#">LinkedIn</a> |
+            <a href="#">Instagram</a> |
+            <a href="#">GitHub</a> |
+            <a href="#">YouTube</a>
+        </p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', function () {
+            var header = document.getElementById('header');
+            var nav = document.getElementById('nav');
+            if (window.scrollY > 50) {
+                header.classList.add('hidden');
+                nav.classList.add('fixed');
+            } else {
+                header.classList.remove('hidden');
+                nav.classList.remove('fixed');
+            }
+        });
+    </script>
+
+</body>
+
+</html>
