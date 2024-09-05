@@ -87,32 +87,6 @@
     transform: translateY(0);
 }
 
-/* Button for each game item */
-.game-section .item .game-button {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 10px 20px;
-    background-color: #0077B6; /* Blue background */
-    color: #fff;
-    font-size: 16px; /* Slightly larger font */
-    text-align: center;
-    text-decoration: none;
-    border: none; /* Remove any border */
-    border-radius: 4px; /* Rounded corners */
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: none; /* Remove box shadow */
-}
-
-.game-section .item .game-button:hover {
-    background-color: #00B4D8; /* Lighter blue on hover */
-    transform: scale(1.05); /* Slightly enlarges the button on hover */
-}
-
-.game-section .item .game-button:focus {
-    outline: none; /* Remove focus outline */
-}
-
 /* Next Button (Carousel) */
 .carousel-button-right {
     position: absolute;
