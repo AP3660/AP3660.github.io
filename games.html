@@ -29,7 +29,6 @@
                 <div class="item-desc">
                     <h3>MycoVerse</h3>
                     <p>A post-apocalyptic survival adventure where humanity fights to endure in a world dominated by mutated, mysterious fungi.</p>
-                    <button class="game-button" data-link="https://aryanpadhye.com/mycoverse">Play</button>
                 </div>
             </div>
             <div class="item" style="background-image: url('assets/locked_down.png');">
@@ -37,7 +36,6 @@
                     <h3>Locked Down</h3>
                     <p>A space adventure in which Spaceman Spiff tries to escape the Vogons and reach safety.</p>
                     <p>Pretty bad game made in 24 hrs :0.</p>
-                    <button class="game-button" data-link="https://aryanpadhye.com/locked_down">Play</button>
                 </div>
             </div>
             <!-- Add more items here as needed -->
@@ -67,12 +65,6 @@
             // Right arrow button to move the carousel
             $(".carousel-button-right").click(function () {
                 owl.trigger('next.owl.carousel');
-            });
-
-            // Click event for each game button to redirect to the respective game page
-            $(".game-button").click(function () {
-                var link = $(this).data("link"); // Get the data-link attribute value
-                window.location.href = link; // Redirect to the game's page
             });
 
             // Ensure the game item doesn't just toggle, it actually redirects on button click
