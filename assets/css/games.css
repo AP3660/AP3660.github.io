@@ -1,42 +1,19 @@
-html, body {
-    height: 100%; /* Ensure the html and body take full height */
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-}
-
-/* Header and Footer styles */
-#header, #footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #f4f4f4;
-    color: #000; /* Ensure the header text remains black */
-    font-size: 24px; /* Adjust the font size for clarity */
-}
-
-#header {
-    height: 100px; /* Fixed height for the header */
-}
-
-#footer {
-    height: 100px; /* Fixed height for the footer */
-}
-
-/* Center the game section vertically between header and footer */
+/* Center carousel between header and footer */
 .game-section {
+    padding: 30px 50px 80px; /* Further reduced top padding and maintained bottom padding */
+    position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center vertically */
-    align-items: center; /* Center horizontally */
-    flex-grow: 1; /* Fill remaining vertical space */
-    padding: 30px 50px;
+    justify-content: center;
+    min-height: calc(100vh - 200px); /* To make sure it's centered between the header and footer */
 }
 
-/* Center the carousel */
+/* Center the heading and carousel */
+.line-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
 .owl-carousel {
     display: flex;
     justify-content: center;
@@ -45,6 +22,7 @@ body {
 .game-section .owl-stage {
     margin: 15px 0;
     display: flex;
+    display: -webkit-flex;
 }
 
 .game-section .item {
@@ -52,18 +30,22 @@ body {
     width: 320px;
     height: 400px;
     display: flex;
+    display: -webkit-flex;
     align-items: flex-end;
+    -webkit-align-items: flex-end;
     background: #343434 no-repeat center center / cover;
     border-radius: 16px;
     overflow: hidden;
     position: relative;
     transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
     cursor: pointer;
 }
 
 .game-section .item.active {
-    width: 320px; /* Ensure it stays the same size */
+    width: 320px; /* Ensure it doesn't grow larger on mobile */
     box-shadow: 12px 40px 40px rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: 12px 40px 40px rgba(0, 0, 0, 0.25);
 }
 
 .game-section .item:after {
@@ -74,7 +56,8 @@ body {
     width: 100%;
     left: 0;
     top: 0;
-    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+    /* Reduced opacity to make the image less dark */
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)); /* Changed from rgba(0, 0, 0, 1) to rgba(0, 0, 0, 0.5) */
 }
 
 .game-section .item-desc {
@@ -84,21 +67,27 @@ body {
     z-index: 1;
     overflow: hidden;
     transform: translateY(calc(100% - 54px));
+    -webkit-transform: translateY(calc(100% - 54px));
     transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
 }
 
 .game-section .item.active .item-desc {
     transform: none;
+    -webkit-transform: none;
 }
 
 .game-section .item-desc p {
     opacity: 0;
+    -webkit-transform: translateY(32px);
     transform: translateY(32px);
     transition: all 0.4s ease-in-out 0.2s;
+    -webkit-transition: all 0.4s ease-in-out 0.2s;
 }
 
 .game-section .item.active .item-desc p {
     opacity: 1;
+    -webkit-transform: translateY(0);
     transform: translateY(0);
 }
 
@@ -107,24 +96,25 @@ body {
     display: inline-block;
     margin-top: 10px;
     padding: 10px 20px;
-    background-color: #0077B6;
+    background-color: #0077B6; /* Blue background */
     color: #fff;
-    font-size: 16px;
+    font-size: 16px; /* Slightly larger font */
     text-align: center;
     text-decoration: none;
     border: none; /* Remove any border */
-    border-radius: 4px;
+    border-radius: 4px; /* Rounded corners */
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: none; /* Remove box shadow */
 }
 
 .game-section .item .game-button:hover {
-    background-color: #00B4D8;
-    transform: scale(1.05);
+    background-color: #00B4D8; /* Lighter blue on hover */
+    transform: scale(1.05); /* Slightly enlarges the button on hover */
 }
 
 .game-section .item .game-button:focus {
-    outline: none;
+    outline: none; /* Remove focus outline */
 }
 
 /* Owl Carousel adjustments */
@@ -139,19 +129,20 @@ body {
     top: 50%;
     right: 20px;
     transform: translateY(-50%);
-    background-color: #0077B6;
+    background-color: #0077B6; /* Blue */
     border: none;
-    color: #CAF0F8;
+    color: #CAF0F8; /* Very Light Blue */
     font-size: 24px;
     padding: 10px;
     border-radius: 50%;
     cursor: pointer;
     z-index: 10;
+    box-shadow: none;
     transition: background-color 0.3s;
 }
 
 .carousel-button-right:hover {
-    background-color: #00B4D8;
+    background-color: #00B4D8; /* Sky Blue */
 }
 
 /* Media Queries for Games Page */
@@ -163,6 +154,6 @@ body {
     }
 
     .game-section .item.active {
-        width: 240px;
+        width: 240px; /* Ensure it stays within the screen */
     }
 }
