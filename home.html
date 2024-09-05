@@ -4,91 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Games - Aryan Padhye</title>
-
-    <!-- Importing Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Courier+New:wght@400;700&display=swap" rel="stylesheet">
-
-    <!-- Importing Global and Game Specific Stylesheets -->
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="assets/css/games.css">
-
-    <!-- Importing Owl Carousel CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <title>Aryan Padhye Portfolio</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 
 <body>
+    <!-- Include Header -->
+    <div id="header"></div>
 
-    <!-- Header (loaded via partials) -->
-    <header id="header">Aryan Padhye</header>
+    <!-- Main Content -->
+    <main>
+        <h2>Hello</h2>
+    </main>
 
-    <section class="game-section">
-        <h2 class="line-title">My Games</h2>
-        <div class="owl-carousel custom-carousel owl-theme">
-            <div class="item active" style="background-image: url('assets/mycoverse.jpg');">
-                <div class="item-desc">
-                    <h3>MycoVerse</h3>
-                    <p>A post-apocalyptic survival adventure where humanity fights to endure in a world dominated by mutated, mysterious fungi.</p>
-                    <button class="game-button" data-link="https://aryanpadhye.com/mycoverse">Play</button>
-                </div>
-            </div>
-            <div class="item" style="background-image: url('assets/locked_down.png');">
-                <div class="item-desc">
-                    <h3>Locked Down</h3>
-                    <p>A space adventure in which Spaceman Spiff tries to escape the Vogons and reach safety.</p>
-                    <p>Pretty bad game made in 24 hrs :0.</p>
-                    <button class="game-button" data-link="https://aryanpadhye.com/locked_down">Play</button>
-                </div>
-            </div>
-            <!-- Add more items here as needed -->
-        </div>
-        <button class="carousel-button-right">&#9654;</button> <!-- Right arrow button -->
-    </section>
+    <!-- Include Footer -->
+    <div id="footer"></div>
 
-    <!-- Footer (loaded via partials) -->
-    <footer id="footer">Footer Content</footer>
-
-    <!-- Importing jQuery and Owl Carousel JS -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-
-    <!-- Script to handle unique game-specific functionalities -->
-    <script>
-        $(document).ready(function () {
-            var owl = $(".custom-carousel").owlCarousel({
-                autoWidth: true,
-                loop: false, // Disable loop to prevent cyclic behavior
-                margin: 10,
-                nav: false,
-                dots: false,
-                items: 1
-            });
-
-            // Right arrow button to move the carousel
-            $(".carousel-button-right").click(function () {
-                owl.trigger('next.owl.carousel');
-            });
-
-            // Click event for each game button to redirect to the respective game page
-            $(".game-button").click(function () {
-                var link = $(this).data("link"); // Get the data-link attribute value
-                window.location.href = link; // Redirect to the game's page
-            });
-
-            // Ensure the game item doesn't just toggle, it actually redirects on button click
-            $(".custom-carousel .item").click(function () {
-                $(".custom-carousel .item").not($(this)).removeClass("active");
-                $(this).addClass("active");
-            });
-        });
-
-        // Header and nav scroll effect moved to external script if necessary
-    </script>
-
-    <!-- Script to load header and footer partials -->
-    <script src="assets/js/main.js"></script>
-
+    <script src="/assets/js/main.js"></script>
 </body>
 
 </html>
