@@ -80,16 +80,22 @@
 .game-section .item .game-button {
     display: inline-block;
     margin-top: 10px;
-    padding: 10px 20px;
-    background-color: #0077B6; /* Blue color for button */
-    color: #fff;
-    font-size: 16px;
-    font-weight: bold;
+    padding: 10px;
+    background-color: #0077B6; /* Blue background */
+    color: #fff; /* White text (play icon) */
+    font-size: 24px; /* Larger font size for play symbol */
     text-align: center;
     text-decoration: none;
-    border-radius: 8px;
+    border: none; /* Remove any border */
+    border-radius: 50%; /* Make it circular */
+    cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    box-shadow: none; /* Remove box shadow */
+    width: 50px; /* Fixed width to create a circle */
+    height: 50px; /* Fixed height to create a circle */
+    display: flex; /* Flexbox to center the play icon */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
 }
 
 .game-section .item .game-button:hover {
@@ -97,15 +103,10 @@
     transform: scale(1.05); /* Slightly enlarges the button on hover */
 }
 
-/* Button responsiveness */
-@media (max-width: 767px) {
-    .game-section .item .game-button {
-        padding: 8px 16px;
-        font-size: 14px;
-    }
+.game-section .item .game-button:focus {
+    outline: none; /* Remove focus outline */
 }
 
-/* Owl theme custom carousel */
 .game-section .owl-theme.custom-carousel .owl-dots {
     margin-top: -20px;
     position: relative;
@@ -126,7 +127,7 @@
     border-radius: 50%;
     cursor: pointer;
     z-index: 10;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    box-shadow: none;
     transition: background-color 0.3s;
 }
 
@@ -190,8 +191,6 @@
 
     .game-section .item.active {
         width: 270px;
-        box-shadow: 6px 10px 10px rgba(0, 0, 0, 0.25);
-        -webkit-box-shadow: 6px 10px 10px rgba(0, 0, 0, 0.25);
     }
 
     .game-section .item-desc {
@@ -200,4 +199,3 @@
         -webkit-transform: translateY(calc(100% - 42px));
     }
 }
-
