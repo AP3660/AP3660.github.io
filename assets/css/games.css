@@ -14,9 +14,10 @@ body {
     text-align: center;
     padding: 20px;
     background-color: #f4f4f4;
+    color: #000; /* Ensure the header text remains black */
+    font-size: 24px; /* Adjust the font size for clarity */
 }
 
-/* Ensure header/footer height for vertical centering calculation */
 #header {
     height: 100px; /* Fixed height for the header */
 }
@@ -33,11 +34,6 @@ body {
     align-items: center; /* Center horizontally */
     flex-grow: 1; /* Fill remaining vertical space */
     padding: 30px 50px;
-}
-
-.line-title {
-    text-align: center;
-    margin-bottom: 20px;
 }
 
 /* Center the carousel */
