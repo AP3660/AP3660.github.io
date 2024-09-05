@@ -1,155 +1,93 @@
-/* Center carousel between header and footer */
-.game-section {
-    padding: 30px 50px 80px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-height: calc(100vh - 200px); /* To make sure it's centered between the header and footer */
-}
+<!DOCTYPE html>
+<html lang="en">
 
-/* Center the carousel */
-.owl-carousel {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games - Aryan Padhye</title>
 
-.game-section .owl-stage {
-    margin: 15px 0;
-    display: flex;
-    display: -webkit-flex;
-}
+    <!-- Importing Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Courier+New:wght@400;700&display=swap" rel="stylesheet">
 
-.game-section .item {
-    margin: 0 15px 60px;
-    width: 320px;
-    height: 400px;
-    display: flex;
-    display: -webkit-flex;
-    align-items: flex-end;
-    -webkit-align-items: flex-end;
-    background: #343434 no-repeat center center / cover;
-    border-radius: 16px;
-    overflow: hidden;
-    position: relative;
-    transition: all 0.4s ease-in-out;
-    -webkit-transition: all 0.4s ease-in-out;
-    cursor: pointer;
-}
+    <!-- Importing Global and Game Specific Stylesheets -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/games.css">
 
-.game-section .item.active {
-    width: 320px; /* Ensure it doesn't grow larger on mobile */
-    box-shadow: 12px 40px 40px rgba(0, 0, 0, 0.25);
-    -webkit-box-shadow: 12px 40px 40px rgba(0, 0, 0, 0.25);
-}
+    <!-- Importing Owl Carousel CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+</head>
 
-.game-section .item:after {
-    content: "";
-    display: block;
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    left: 0;
-    top: 0;
-    /* Reduced opacity to make the image less dark */
-    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)); /* Changed from rgba(0, 0, 0, 1) to rgba(0, 0, 0, 0.5) */
-}
+<body>
 
-.game-section .item-desc {
-    padding: 0 24px 12px;
-    color: #fff;
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
-    transform: translateY(calc(100% - 54px));
-    -webkit-transform: translateY(calc(100% - 54px));
-    transition: all 0.4s ease-in-out;
-    -webkit-transition: all 0.4s ease-in-out;
-}
+    <!-- Header (loaded via partials) -->
+    <header id="header"></header>
 
-.game-section .item.active .item-desc {
-    transform: none;
-    -webkit-transform: none;
-}
+    <section class="game-section">
+        <div class="owl-carousel custom-carousel owl-theme">
+            <div class="item active" style="background-image: url('assets/mycoverse.jpg');">
+                <div class="item-desc">
+                    <h3>MycoVerse</h3>
+                    <p>A post-apocalyptic survival adventure where humanity fights to endure in a world dominated by mutated, mysterious fungi.</p>
+                    <button class="game-button" data-link="https://aryanpadhye.com/mycoverse">Play</button>
+                </div>
+            </div>
+            <div class="item" style="background-image: url('assets/locked_down.png');">
+                <div class="item-desc">
+                    <h3>Locked Down</h3>
+                    <p>A space adventure in which Spaceman Spiff tries to escape the Vogons and reach safety.</p>
+                    <p>Pretty bad game made in 24 hrs :0.</p>
+                    <button class="game-button" data-link="https://aryanpadhye.com/locked_down">Play</button>
+                </div>
+            </div>
+            <!-- Add more items here as needed -->
+        </div>
+        <button class="carousel-button-right">&#9654;</button> <!-- Right arrow button -->
+    </section>
 
-.game-section .item-desc p {
-    opacity: 0;
-    -webkit-transform: translateY(32px);
-    transform: translateY(32px);
-    transition: all 0.4s ease-in-out 0.2s;
-    -webkit-transition: all 0.4s ease-in-out 0.2s;
-}
+    <!-- Footer (loaded via partials) -->
+    <footer id="footer"></footer>
 
-.game-section .item.active .item-desc p {
-    opacity: 1;
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-}
+    <!-- Importing jQuery and Owl Carousel JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
-/* Button for each game item */
-.game-section .item .game-button {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 10px 20px;
-    background-color: #0077B6; /* Blue background */
-    color: #fff;
-    font-size: 16px; /* Slightly larger font */
-    text-align: center;
-    text-decoration: none;
-    border: none; /* Remove any border */
-    border-radius: 4px; /* Rounded corners */
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: none; /* Remove box shadow */
-}
+    <!-- Script to handle unique game-specific functionalities -->
+    <script>
+        $(document).ready(function () {
+            var owl = $(".custom-carousel").owlCarousel({
+                autoWidth: true,
+                loop: false, // Disable loop to prevent cyclic behavior
+                margin: 10,
+                nav: false,
+                dots: false,
+                items: 1
+            });
 
-.game-section .item .game-button:hover {
-    background-color: #00B4D8; /* Lighter blue on hover */
-    transform: scale(1.05); /* Slightly enlarges the button on hover */
-}
+            // Right arrow button to move the carousel
+            $(".carousel-button-right").click(function () {
+                owl.trigger('next.owl.carousel');
+            });
 
-.game-section .item .game-button:focus {
-    outline: none; /* Remove focus outline */
-}
+            // Click event for each game button to redirect to the respective game page
+            $(".game-button").click(function () {
+                var link = $(this).data("link"); // Get the data-link attribute value
+                window.location.href = link; // Redirect to the game's page
+            });
 
-/* Next Button (Carousel) */
-.carousel-button-right {
-    position: absolute;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
-    background-color: #0077B6; /* Blue */
-    border: none;
-    color: #CAF0F8; /* Very Light Blue */
-    font-size: 24px;
-    padding: 15px;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%; /* Make the button perfectly circular */
-    cursor: pointer;
-    z-index: 10;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s, transform 0.3s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+            // Ensure the game item doesn't just toggle, it actually redirects on button click
+            $(".custom-carousel .item").click(function () {
+                $(".custom-carousel .item").not($(this)).removeClass("active");
+                $(this).addClass("active");
+            });
+        });
 
-.carousel-button-right:hover {
-    background-color: #00B4D8; /* Lighter blue on hover */
-    transform: scale(1.1); /* Slightly enlarges the button on hover */
-}
+        // Header and nav scroll effect moved to external script if necessary
+    </script>
 
-/* Media Queries for Games Page */
-@media (max-width: 991px) {
-    .game-section .item {
-        margin: 0 12px 60px;
-        width: 240px;
-        height: 330px;
-    }
+    <!-- Script to load header and footer partials -->
+    <script src="assets/js/main.js"></script>
 
-    .game-section .item.active {
-        width: 240px; /* Ensure it stays within the screen */
-    }
-}
+</body>
+
+</html>
